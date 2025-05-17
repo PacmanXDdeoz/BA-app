@@ -1,13 +1,16 @@
 import java.sql.*;
 import Config.Con;
-import UI.Menu;
+import UI.MenuLogin;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        Menu.menuPrincipal();
+
         System.out.println("Bienvenido");
         Con con = null;
         Connection connection = null;
+
+        MenuLogin.menuBienvenida();
+
         try {
             connection = con.getConn();
             System.out.println("Conexión correcta");

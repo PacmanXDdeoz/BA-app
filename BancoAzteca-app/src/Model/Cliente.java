@@ -1,15 +1,19 @@
 package Model;
+import java.sql.Date;
 
 public class Cliente {
     int cliente_id;
-    String nombre_cliente, apellido_paterno, apellido_materno;
-    String fecha_nacimiento, telefono, direccion, email, ocupacion, rfc, curp;
+    String nombre_cliente, apellido_paterno, apellido_materno, 
+    telefono, direccion, email, ocupacion, rfc, curp, password;
+    Date fecha_nacimiento;
+    
 
     public Cliente(){
     }
     
     public Cliente(int cliente_id, String nombre_cliente, String apellido_paterno, String apellido_materno,
-    String fecha_nacimiento, String telefono, String direccion, String email, String ocupacion, String rfc, String curp){
+    Date fecha_nacimiento, String telefono, String direccion, String email, String ocupacion, String rfc, 
+    String curp, String password){
         this.cliente_id = cliente_id;
         this.nombre_cliente = nombre_cliente;
         this.apellido_paterno = apellido_paterno;
@@ -21,6 +25,7 @@ public class Cliente {
         this.ocupacion = ocupacion;
         this.rfc = rfc;
         this.curp = curp;
+        this.password = password;
     }
 
     public int getCliente_id() {
@@ -53,14 +58,6 @@ public class Cliente {
 
     public void setApellido_materno(String apellido_materno) {
         this.apellido_materno = apellido_materno;
-    }
-
-    public String getFecha_nacimiento() {
-        return fecha_nacimiento;
-    }
-
-    public void setFecha_nacimiento(String fecha_nacimiento) {
-        this.fecha_nacimiento = fecha_nacimiento;
     }
 
     public String getTelefono() {
@@ -111,12 +108,27 @@ public class Cliente {
         this.curp = curp;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Date getFecha_nacimiento() {
+        return fecha_nacimiento;
+    }
+
+    public void setFecha_nacimiento(Date fecha_nacimiento) {
+        this.fecha_nacimiento = fecha_nacimiento;
+    }
+
     @Override
     public String toString() {
         return "Cliente [cliente_id=" + cliente_id + ", nombre_cliente=" + nombre_cliente + ", apellido_paterno="
-                + apellido_paterno + ", apellido_materno=" + apellido_materno + ", fecha_nacimiento=" + fecha_nacimiento
-                + ", telefono=" + telefono + ", direccion=" + direccion + ", email=" + email + ", ocupacion="
-                + ocupacion + ", rfc=" + rfc + ", curp=" + curp + "]";
+                + apellido_paterno + ", apellido_materno=" + apellido_materno + ", telefono=" + telefono
+                + ", direccion=" + direccion + ", email=" + email + ", ocupacion=" + ocupacion + ", rfc=" + rfc
+                + ", curp=" + curp + ", password=" + password + ", fecha_nacimiento=" + fecha_nacimiento + "]";
     }
-    
 }

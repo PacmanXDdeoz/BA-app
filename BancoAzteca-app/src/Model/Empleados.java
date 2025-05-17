@@ -3,14 +3,15 @@ package Model;
 public class Empleados {
     int empleados_id, sucursal_id, departamento_id;
     double salario;
-    String nombre_empleado, apellido_paterno, apellido_materno, puesto, telefono_empleado, email_empleado;
+    String nombre_empleado, apellido_paterno, apellido_materno, puesto, 
+    telefono_empleado, email_empleado, password_empleado;
 
     public Empleados(){
     }
 
     public Empleados(int empleados_id, int sucursal_id, int departamento_id,
     String nombre_empleado, String apellido_paterno, String apellido_materno,
-    String puesto, double salario, String telefono_empleado, String email_empleado){
+    String puesto, double salario, String telefono_empleado, String email_empleado, String password_empleado){
         this.empleados_id = empleados_id;
         this.sucursal_id = sucursal_id;
         this.departamento_id = departamento_id;
@@ -21,6 +22,7 @@ public class Empleados {
         this.salario = salario;
         this.telefono_empleado = telefono_empleado;
         this.email_empleado = email_empleado;
+        this.password_empleado = password_empleado;
     }
 
     public int getEmpleados_id() {
@@ -103,11 +105,20 @@ public class Empleados {
         this.email_empleado = email_empleado;
     }
 
+    public String getPassword_empleado() {
+        return password_empleado;
+    }
+
+    public void setPassword_empleado(String password_empleado) {
+        this.password_empleado = password_empleado;
+    }
+
     @Override
     public String toString() {
         return "Empleados [empleados_id=" + empleados_id + ", sucursal_id=" + sucursal_id + ", departamento_id="
                 + departamento_id + ", salario=" + salario + ", nombre_empleado=" + nombre_empleado
                 + ", apellido_paterno=" + apellido_paterno + ", apellido_materno=" + apellido_materno + ", puesto="
-                + puesto + ", telefono_empleado=" + telefono_empleado + ", email_empleado=" + email_empleado + "]";
+                + puesto + ", telefono_empleado=" + telefono_empleado + ", email_empleado=" + email_empleado
+                + ", password_empleado=" + password_empleado + "]";
     }
 }
