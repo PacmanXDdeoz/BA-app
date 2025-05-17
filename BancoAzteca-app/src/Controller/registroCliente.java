@@ -3,7 +3,7 @@ package Controller;
 import Model.Cliente;
 import Config.Con;
 import Repository.InsertCliente;
-import Service.PasswordService;
+import Service.PassEmpleadoService;
 
 import java.util.Scanner;
 import java.util.ArrayList;
@@ -79,13 +79,13 @@ public class registroCliente {
                     System.out.println("Ingresa tu contraseña: ");
                     String password_empleado = sc.nextLine();
 
-                    if (PasswordService.validarPass(password_empleado)) {
+                    if (PassEmpleadoService.validarPass(password_empleado)) {
                         System.out.println("Confirma tu contraseña: ");
                         String confirmarPass = sc.nextLine();
 
                         if (password_empleado.equals(confirmarPass)) {
                             // ? Hashear la contraseña antes de guardarla
-                            String hashedPass = PasswordService.hashPass(password_empleado);
+                            String hashedPass = PassEmpleadoService.hashPass(password_empleado);
                             cliente.setPassword(hashedPass);
                             passVal = true;
                         } else {

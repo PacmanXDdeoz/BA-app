@@ -5,10 +5,10 @@ import java.security.NoSuchAlgorithmException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class PasswordService {
+public class PassClienteService {
     // TODO: Valida la contraseña para que cumpla con las especificaciones
-        public static boolean validarPass(String password_empleado){
-            if(password_empleado.length() < 8) {
+        public static boolean validarPass(String password){
+            if(password.length() < 8) {
                 return false; // ? Verifica la longitud minima
             }
 
@@ -16,18 +16,18 @@ public class PasswordService {
             Pattern letraMin = Pattern.compile("[a-z]"); // ? Busca patrones de minusculas
             Pattern num = Pattern.compile("[0-9]"); // ? Busca patrones de numeros
 
-            Matcher mayusculas = letraMay.matcher(password_empleado); // ? Verifica que se cumpla con letras mayusuclas
-            Matcher minusculas = letraMin.matcher(password_empleado); // ? Verifica que se cumpla con letras minusculas
-            Matcher numero = num.matcher(password_empleado); // ? Verifica que se cumpla con numeros
+            Matcher mayusculas = letraMay.matcher(password); // ? Verifica que se cumpla con letras mayusuclas
+            Matcher minusculas = letraMin.matcher(password); // ? Verifica que se cumpla con letras minusculas
+            Matcher numero = num.matcher(password); // ? Verifica que se cumpla con numeros
 
             return mayusculas.find() && minusculas.find() && numero.find();
         }
 
         // TODO: Algoritmo para encriptar contraseña usando SHA-256
-        public static String hashPass(String password_empleado){
+        public static String hashPass(String password){
             try {
                 MessageDigest digest = MessageDigest.getInstance("SHA-256");
-                byte[] hash = digest.digest(password_empleado.getBytes());
+                byte[] hash = digest.digest(password.getBytes());
 
                 // ? Convierte los bytes a representacion hexadecimal
                 StringBuilder hexString = new StringBuilder();

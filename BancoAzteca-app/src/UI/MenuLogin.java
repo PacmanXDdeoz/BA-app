@@ -52,7 +52,16 @@ public class MenuLogin {
     }
 
     public static void loginEmpleado(){
-            
+        Scanner sc = new Scanner(System.in);
+        System.out.println("\n██████INICIO DE SESION██████");
+        System.out.println("Correo: ");
+        String email = sc.nextLine();
+
+        System.out.println("Contraseña: ");
+        String password = sc.nextLine();
+
+        
+        sc.close();
     }
 
 }
