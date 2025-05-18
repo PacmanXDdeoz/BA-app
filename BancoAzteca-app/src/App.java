@@ -1,6 +1,7 @@
 import java.sql.*;
 import Config.Con;
 import UI.MenuLogin;
+import Controller.registroEmpleado;
 
 public class App {
     public static void main(String[] args) throws Exception {

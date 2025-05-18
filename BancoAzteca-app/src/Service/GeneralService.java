@@ -2,9 +2,9 @@ package Service;
 
 import java.io.IOException;
 
-public class GenerealService {
+public class GeneralService {
     
-    public final void cleanScreen() {
+    public static void cleanScreen() {
         try {
             String sistemaOperativo = System.getProperty("os.name").toLowerCase();
 
@@ -21,7 +21,7 @@ public class GenerealService {
         }
     }
 
-    public final void showLoadingTruck() {
+    public static void showLoading() {
         String truck = "...💸  ";
         int steps = 10; // Número de pasos en la animación
         int delay = 300; // Tiempo entre pasos en milisegundos

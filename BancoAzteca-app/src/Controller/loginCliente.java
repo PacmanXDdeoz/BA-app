@@ -1,15 +1,16 @@
 package Controller;
-import Model.Empleados;
-import Config.Con;
-import Service.PassClienteService;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class LoginEmpleado {
-    public static Empleados login (String email, String password){
+import Config.Con;
+import Model.Cliente;
+import Service.PassClienteService;
+
+public class loginCliente {
+    public static Cliente login (String email, String password){
         Connection connection = null;
         PreparedStatement ps = null;
         ResultSet resultSet = null;
@@ -17,7 +18,7 @@ public class LoginEmpleado {
         try {
             connection = Con.getConn();
 
-            String query = "select * from banco.empleados where email_empleado = ?";
+            String query = "select * from banco.cliente where email_empleado = ?";
             ps = connection.prepareStatement(query);
             ps.setString(1, email);
 
@@ -29,19 +30,18 @@ public class LoginEmpleado {
                 String inputHash = PassClienteService.hashPass(password);
                 
                 if (storedHash.equals(inputHash)) {
-                    Empleados empleados = new Empleados();
-                    empleados.setEmpleados_id(resultSet.getInt("empleados_id"));
-                    empleados.setSucursal_id(resultSet.getInt("sucursal_id"));
-                    empleados.setDepartamento_id(resultSet.getInt("departamento_id"));
-                    empleados.setNombre_empleado(resultSet.getString("nombre_empleado"));
-                    empleados.setApellido_paterno(resultSet.getString("apellido_paterno"));
-                    empleados.setApellido_materno(resultSet.getString("apellido_materno"));
-                    empleados.setPuesto(resultSet.getInt("puesto_id"));
-                    empleados.setSalario(resultSet.getDouble("salario"));
-                    empleados.setTelefono_empleado(resultSet.getString("telefono_empleado"));
-                    empleados.setEmail_empleado(resultSet.getString("email_empleado"));
+                    Cliente cliente = new Cliente();
+                    cliente.setCliente_id(resultSet.getInt("cliente_id"));
+                    cliente.setNombre_cliente(resultSet.getString("nombre_cliente"));
+                    cliente.setApellido_paterno(resultSet.getString("apellido_paterno"));
+                    cliente.setApellido_materno(resultSet.getString("apellido_materno"));
+                    cliente.setFecha_nacimiento(resultSet.getDate("fecha_nacimiento"));
+                    cliente.setTelefono(resultSet.getString("telefono"));
+                    cliente.setDireccion(resultSet.getString("direccion"));
+                    cliente.setEmail(resultSet.getString("email"));
+                    cliente.setRfc(resultSet.getString("curp"));
                     
-                    return empleados;
+                    return cliente;
                 }
             }
             return null;

@@ -78,23 +78,17 @@ public class registroCliente {
                 while (passVal) {
                     System.out.println("Ingresa tu contraseña: ");
                     String password_empleado = sc.nextLine();
-
-                    if (PassEmpleadoService.validarPass(password_empleado)) {
                         System.out.println("Confirma tu contraseña: ");
                         String confirmarPass = sc.nextLine();
 
                         if (password_empleado.equals(confirmarPass)) {
                             // ? Hashear la contraseña antes de guardarla
-                            String hashedPass = PassEmpleadoService.hashPass(password_empleado);
+                            String hashedPass = PassEmpleadoService.hashPassword(password_empleado);
                             cliente.setPassword(hashedPass);
                             passVal = true;
                         } else {
                             System.out.println("Las contraseñas no coinciden. Intenta de nuevo");
-                        }
-                    } else {
-                        System.out.println("La contraseña no cumple con los requisitos. Intenta de nuevo");
-                    }
-                    
+                        }                    
                 }
 
             System.out.println("¿Cual es tu ocupacion?: ");

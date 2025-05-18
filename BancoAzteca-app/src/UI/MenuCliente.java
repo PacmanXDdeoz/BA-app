@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Model.Productos_Financieros;
-public class Menu {
+public class MenuCliente {
     
     public static void menuPrincipal(){
         Scanner sc = new Scanner(System.in);

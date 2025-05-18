@@ -1,9 +1,9 @@
 package Model;
 
 public class Empleados {
-    int empleados_id, sucursal_id, departamento_id;
+    int empleados_id, sucursal_id, departamento_id, puesto_id;
     double salario;
-    String nombre_empleado, apellido_paterno, apellido_materno, puesto, 
+    String nombre_empleado, apellido_paterno, apellido_materno, 
     telefono_empleado, email_empleado, password_empleado;
 
     public Empleados(){
@@ -11,14 +11,14 @@ public class Empleados {
 
     public Empleados(int empleados_id, int sucursal_id, int departamento_id,
     String nombre_empleado, String apellido_paterno, String apellido_materno,
-    String puesto, double salario, String telefono_empleado, String email_empleado, String password_empleado){
+    int puesto_id, double salario, String telefono_empleado, String email_empleado, String password_empleado){
         this.empleados_id = empleados_id;
         this.sucursal_id = sucursal_id;
         this.departamento_id = departamento_id;
         this.nombre_empleado = nombre_empleado;
         this.apellido_paterno = apellido_paterno;
         this.apellido_materno = apellido_materno;
-        this.puesto = puesto;
+        this.puesto_id = puesto_id;
         this.salario = salario;
         this.telefono_empleado = telefono_empleado;
         this.email_empleado = email_empleado;
@@ -81,12 +81,12 @@ public class Empleados {
         this.apellido_materno = apellido_materno;
     }
 
-    public String getPuesto() {
-        return puesto;
+    public int getPuesto_id() {
+        return puesto_id;
     }
 
-    public void setPuesto(String puesto) {
-        this.puesto = puesto;
+    public void setPuesto(int puesto_id) {
+        this.puesto_id = puesto_id;
     }
 
     public String getTelefono_empleado() {
@@ -117,8 +117,8 @@ public class Empleados {
     public String toString() {
         return "Empleados [empleados_id=" + empleados_id + ", sucursal_id=" + sucursal_id + ", departamento_id="
                 + departamento_id + ", salario=" + salario + ", nombre_empleado=" + nombre_empleado
-                + ", apellido_paterno=" + apellido_paterno + ", apellido_materno=" + apellido_materno + ", puesto="
-                + puesto + ", telefono_empleado=" + telefono_empleado + ", email_empleado=" + email_empleado
+                + ", apellido_paterno=" + apellido_paterno + ", apellido_materno=" + apellido_materno + ", puesto_id="
+                + puesto_id + ", telefono_empleado=" + telefono_empleado + ", email_empleado=" + email_empleado
                 + ", password_empleado=" + password_empleado + "]";
     }
 }

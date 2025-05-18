@@ -2,7 +2,6 @@ package Controller;
 import Model.Empleados;
 import Repository.InsertEmpleados;
 import Config.Con;
-import Service.PassEmpleadoService;
 
 import java.util.Scanner;
 import java.util.ArrayList;
@@ -24,16 +23,26 @@ public class registroEmpleado {
                 int id = registroEmpleados.size()+1;
                 registroEmpleados.get(registroEmpleados.size()-1).setEmpleados_id(id);
 
+                int sucursal = 0;
+                do {
                 System.out.println("¿A que sucursal perteneces?");
                 System.out.println("1. Mega del moral");
                 System.out.println("2. Ekt Leyes de reforma");
                 System.out.println("3. Mega agricola oriental");
                 System.out.println("4. Ekt mercado pantitlan");
                 System.out.println("5. Mega Raul Romero");
-                int sucursal = sc.nextInt();
+                sucursal = sc.nextInt();
                 sc.nextLine();
-                empleados.setSucursal_id(sucursal);
+                if (sucursal >= 1 && sucursal <= 5) {
+                    empleados.setSucursal_id(sucursal);
+                    break;
+                } else {
+                    System.out.println("selecciona una opcion valida");
+                    continue;
+                }} while (sucursal >= 5);
 
+                int departamento = 0;
+                do {
                 System.out.println("¿En que departamento te encuentras?");
                 System.out.println("1. Asesoria financiera");
                 System.out.println("2. Creditos");
@@ -42,30 +51,28 @@ public class registroEmpleado {
                 System.out.println("5. TPremia");
                 System.out.println("6. Area administrativa");
                 System.out.println("7. Cajeros Automaticos");
-                int departamento = sc.nextInt();
+                departamento = sc.nextInt();
                 sc.nextLine();
-                empleados.setDepartamento_id(departamento);
+                if(departamento >= 1 && departamento <= 7){
+                    empleados.setDepartamento_id(departamento);
+                    break;
+                } else {
+                    System.out.println("Selecciona una opcion valida");
+                    continue;
+                }
+                } while (departamento > 7);
 
-                System.out.println("Dame tu nombre/nombres");
+                System.out.println("Ingresa tu nombre/nombres");
                 String nombre = sc.nextLine();
                 empleados.setNombre_empleado(nombre);
 
-                System.out.println("Dame tu apellido paterno");
+                System.out.println("Ingresa tu apellido paterno");
                 String apPaterno = sc.nextLine();
                 empleados.setApellido_paterno(apPaterno);
 
-                System.out.println("Dame tu apellido materno");
+                System.out.println("Ingresa tu apellido materno");
                 String apMaterno = sc.nextLine();
                 empleados.setApellido_materno(apMaterno);
-
-                System.out.println("¿En que puesto te contraron?");
-                String puesto = sc.nextLine();
-                empleados.setPuesto(puesto);
-
-                System.out.println("¿Cual será el salario otorgado?");
-                Double salario = sc.nextDouble();
-                empleados.setSalario(salario);
-                sc.nextLine();
 
                 System.out.println("Ingresa tu telefono");
                 String telefono = sc.nextLine();
@@ -75,30 +82,41 @@ public class registroEmpleado {
                 String correo = sc.nextLine();
                 empleados.setEmail_empleado(correo);
 
-                boolean passVal = false;
-                while (passVal) {
-                    System.out.println("Ingresa tu contraseña: ");
-                    String password_empleado = sc.nextLine();
+                System.out.println("Ingresa tu contraseña: ");
+                String password_empleado = sc.nextLine();
+                empleados.setPassword_empleado(password_empleado);
 
-                    if (PassEmpleadoService.validarPass(password_empleado)) {
-                        System.out.println("Confirma tu contraseña: ");
-                        String confirmarPass = sc.nextLine();
+                int puesto = 0;
+                do{
+                System.out.println("¿En que puesto te contrataron?");
+                System.out.println(" 1. Ejecutivo");
+                System.out.println(" 2. Asesor");
+                System.out.println(" 3. Atencion a clientes");
+                System.out.println(" 4. Gerente");
+                puesto = sc.nextInt();
+                sc.nextLine();
+                if(puesto >= 1 && puesto <= 4){
+                    empleados.setPuesto(puesto);
+                    break;
+                } else {
+                    System.out.println("Selecciona una opcion valida");
+                }} while (puesto > 4);
 
-                        if (password_empleado.equals(confirmarPass)) {
-                            // ? Hashear la contraseña antes de guardarla
-                            String hashedPass = PassEmpleadoService.hashPass(password_empleado);
-                            empleados.setPassword_empleado(hashedPass);
-                            passVal = true;
-                        } else {
-                            System.out.println("Las contraseñas no coinciden. Intenta de nuevo");
-                        }
-                    } else {
-                        System.out.println("La contraseña no cumple con los requisitos. Intenta de nuevo");
-                    }
-                    
+                if(puesto == 1) {
+                    empleados.setSalario(8000);
+                    System.out.println("Tu salario será de $8000 pesos 💸");
+                } if (puesto == 2) {
+                    empleados.setSalario(7500);
+                    System.out.println("Tu salario será de $7500 pesos 💸");
+                } if (puesto == 3){
+                    empleados.setSalario(7000);
+                    System.out.println("Tu salario será de $7000 pesos 💸");
+                } if (puesto == 4){
+                    empleados.setSalario(12000);
+                    System.out.println("Tu salario será de $12000 pesos 💸");
                 }
 
-                InsertEmpleados.insertEmpleados(connection, empleados);
+                InsertEmpleados.iEmpleados(connection, empleados);
                 System.out.println("Empleado registrado");
                 
             } catch(SQLException e) {
