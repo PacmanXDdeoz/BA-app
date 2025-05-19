@@ -6,7 +6,10 @@ import Controller.LoginEmpleado;
 import Controller.loginCliente;
 import Service.GeneralService;
 
+import java.sql.Connection;
 import java.util.Scanner;
+
+import Config.Con;
 
 public class MenuLogin {
 
@@ -66,7 +69,6 @@ public class MenuLogin {
                 System.out.println("Error: " + e.getMessage());
                 e.printStackTrace();
             }
-            sc.close();
         }
     }
 
@@ -79,15 +81,25 @@ public class MenuLogin {
         System.out.println("Contraseña: ");
         String password = sc.nextLine();
         
-        Empleados empleados = LoginEmpleado.login(email, password);
+        try {
+            Connection connection = Con.getConn();
 
-        if(empleados != null) {
-            System.out.println("Bienvenido: " + empleados.getNombre_empleado() + " " + empleados.getApellido_paterno() + " " + empleados.getApellido_materno());
-            System.out.println("Puesto: " + empleados.getPuesto_id());
-        } else {
-            System.out.println("Lo que ingresaste es incorrecto, intenta de nuevo");
+            Empleados logEmpleado = LoginEmpleado.login(connection, email, password);
+
+            if (logEmpleado != null) {
+                System.out.println("Login exitoso!");
+                System.out.println("Bienvenido " + logEmpleado.getNombre_empleado() + logEmpleado.getApellido_paterno() + logEmpleado.getApellido_materno());
+            } else {
+                System.out.println("Error de autenticacion: Email o contraseña incorrecta");
+            }
+
+            connection.close();
+        } catch (Exception e) {
+            System.err.println("Error en el proceso de login: " + e.getMessage());
+            e.printStackTrace();
+        } finally {
+            sc.close();
         }
-        sc.close();
     }
 
     public static void loginCliente(){
@@ -106,7 +118,6 @@ public class MenuLogin {
         } else {
             System.out.println("Lo que ingresaste es incorrecto, intenta de nuevo");
         }
-        sc.close();
     }
 
 }

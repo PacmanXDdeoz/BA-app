@@ -96,23 +96,28 @@ public class registroEmpleado {
                 puesto = sc.nextInt();
                 sc.nextLine();
                 if(puesto >= 1 && puesto <= 4){
-                    empleados.setPuesto(puesto);
+                    empleados.setPuesto_id(puesto);
                     break;
                 } else {
                     System.out.println("Selecciona una opcion valida");
                 }} while (puesto > 4);
 
+                int salario = 0;
                 if(puesto == 1) {
-                    empleados.setSalario(8000);
+                    salario = 8000;
+                    empleados.setSalario(salario);
                     System.out.println("Tu salario será de $8000 pesos 💸");
                 } if (puesto == 2) {
-                    empleados.setSalario(7500);
+                    salario = 7500;
+                    empleados.setSalario(salario);
                     System.out.println("Tu salario será de $7500 pesos 💸");
                 } if (puesto == 3){
-                    empleados.setSalario(7000);
+                    salario = 7000;
+                    empleados.setSalario(salario);
                     System.out.println("Tu salario será de $7000 pesos 💸");
                 } if (puesto == 4){
-                    empleados.setSalario(12000);
+                    salario = 12000;
+                    empleados.setSalario(salario);
                     System.out.println("Tu salario será de $12000 pesos 💸");
                 }
 
@@ -127,7 +132,6 @@ public class registroEmpleado {
                 e.printStackTrace();
             } finally {
                 Con.closeConnetion(connection);
-                sc.close();
             }
             return registroEmpleados;
         }

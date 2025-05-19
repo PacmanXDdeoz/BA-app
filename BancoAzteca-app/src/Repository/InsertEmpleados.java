@@ -12,7 +12,19 @@ public class InsertEmpleados {
     public static void iEmpleados(Connection connection, Empleados empleados) throws SQLException{
         Con.getConn();
         PreparedStatement ps = null;
-        String insert = "insert into banco.empleados (sucursal_id, departamento_id, nombre_empleado, apellido_paterno, apellido_materno, telefono_empleado, email_empleado, password_empleado, puesto, salario) values (?,?,?,?,?,?,?,crypt(?, gen_salt('bf',10)),?,?)";
+
+        String encryptPasswordSQL = "SELECT crypt(?, gen_salt('bf', 10)) as password_hash from banco.empleados";
+        String passwordHash = null;
+        try (PreparedStatement psEncrypt = connection.prepareStatement(encryptPasswordSQL)){
+            psEncrypt.setString(1, empleados.getPassword_empleado());
+        try (var rs = psEncrypt.executeQuery()) {
+            if (rs.next()) {
+                passwordHash = rs.getString("password_hash");
+            }
+        }
+
+        String insert = "insert into banco.empleados (sucursal_id, departamento_id, nombre_empleado, apellido_paterno, apellido_materno, telefono_empleado, email_empleado, password_empleado, puesto, salario)" + 
+        "values (?,?,?,?,?,?,?,?,?,?)";
 
         try{
             ps = connection.prepareStatement(insert);
@@ -24,13 +36,19 @@ public class InsertEmpleados {
             ps.setString(5, empleados.getApellido_materno());
             ps.setString(6, empleados.getTelefono_empleado());
             ps.setString(7, empleados.getEmail_empleado());
-            ps.setString(9, empleados.getPassword_empleado());
+            ps.setString(8, passwordHash);
             ps.setInt(9, empleados.getPuesto_id());
             ps.setDouble(10, empleados.getSalario());
 
-            ps.executeUpdate();
+            int update = ps.executeUpdate();
+            if (update>0) {
+                System.out.println("Datos insertados correctamente");
+            } else {
+                System.out.println("Datos no insertados");
+            }
         } catch (Exception e) {
             System.err.println("Error de conexión: " + e.getMessage());
         }
     }
+}
 }
