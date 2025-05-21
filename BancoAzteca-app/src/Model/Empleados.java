@@ -1,7 +1,7 @@
 package Model;
 
 public class Empleados {
-    int empleados_id, sucursal_id, departamento_id, puesto_id;
+    int empleado_id, sucursal_id, departamento_id, puesto_id;
     double salario;
     String nombre_empleado, apellido_paterno, apellido_materno, 
     telefono_empleado, email_empleado, password_empleado;
@@ -9,11 +9,11 @@ public class Empleados {
     public Empleados(){
     }
 
-    public Empleados(int empleados_id, int sucursal_id, int departamento_id,
+    public Empleados(int empleado_id, int sucursal_id, int departamento_id,
     String nombre_empleado, String apellido_paterno, String apellido_materno,
     String telefono_empleado, String email_empleado, String password_empleado,
     int puesto_id, double salario){
-        this.empleados_id = empleados_id;
+        this.empleado_id = empleado_id;
         this.sucursal_id = sucursal_id;
         this.departamento_id = departamento_id;
         this.nombre_empleado = nombre_empleado;
@@ -26,12 +26,12 @@ public class Empleados {
         this.salario = salario;
     }
 
-    public int getEmpleados_id() {
-        return empleados_id;
+    public int getEmpleado_id() {
+        return empleado_id;
     }
 
-    public void setEmpleados_id(int empleados_id) {
-        this.empleados_id = empleados_id;
+    public void setEmpleado_id(int empleado_id) {
+        this.empleado_id = empleado_id;
     }
 
     public int getSucursal_id() {
@@ -116,7 +116,7 @@ public class Empleados {
 
     @Override
     public String toString() {
-        return "Empleados [empleados_id=" + empleados_id + ", sucursal_id=" + sucursal_id + ", departamento_id="
+        return "Empleados [empleado_id=" + empleado_id + ", sucursal_id=" + sucursal_id + ", departamento_id="
                 + departamento_id + ", puesto_id=" + puesto_id + ", salario=" + salario + ", nombre_empleado="
                 + nombre_empleado + ", apellido_paterno=" + apellido_paterno + ", apellido_materno=" + apellido_materno
                 + ", telefono_empleado=" + telefono_empleado + ", email_empleado=" + email_empleado

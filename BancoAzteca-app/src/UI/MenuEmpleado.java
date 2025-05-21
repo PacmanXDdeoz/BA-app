@@ -12,14 +12,14 @@ import Service.GeneralService;
 
 public class MenuEmpleado {
 
-    public static void menuEmpleado(){
+    public static void menuEmpleado(Empleados empladoActual){
         GeneralService.cleanScreen();
         Connection connection;
-        Empleados empleado = new Empleados();
+
         Scanner sc = new Scanner(System.in);
 
         try {
-            System.out.println("███ Bienvenido a tu puesto " + empleado.getNombre_empleado() + " ███");
+            System.out.println("███ Bienvenido a tu puesto " + empladoActual.getNombre_empleado() + " ███");
             System.out.println("Elige una opcion");
             System.out.println("1. Consultas");
             System.out.println("2. Registro");
@@ -31,12 +31,29 @@ public class MenuEmpleado {
             int opt = sc.nextInt();
             switch (opt) {
                 case 1:
-                    GeneralService.cleanScreen();
-                    GeneralService.showLoading();
-                    verInfoEmplado(empleado.getEmpleados_id());
-
-                    break;
-            
+                GeneralService.cleanScreen();
+                GeneralService.showLoading();
+                verInfoEmplado(empladoActual.getEmpleado_id());
+                menuEmpleado(empladoActual);
+                break;
+                case 2:
+                GeneralService.cleanScreen();
+                System.out.println("】Menu de Registro【");
+                System.out.println("1. Nuevo Cliente");
+                System.out.println("2. Nuevo Empleado");
+                int op = sc.nextInt();
+                do {
+                    if (op == 1) {
+                        // ! registroCliente
+                    } if (op == 2) {
+                        GeneralService.cleanScreen();
+                        GeneralService.showLoading();
+                        GeneralService.cleanScreen();
+                        RegistroEmpleado.rEmpleado();
+                    } else {
+                        System.out.println("Selecciona una opcion valida");
+                    }
+                } while (op > 2);
                 default:
                     break;
             }
@@ -53,17 +70,17 @@ public class MenuEmpleado {
             connection = Con.getConn();
 
             Map<String, Object> detalles = ConsultasEmpleados.consultaEmpleados(connection, empladoId);
-            if (detalles != null) {
 
+            if (detalles != null) {
                 System.out.println("ID: " + detalles.get("empleado_id"));
                 System.out.println("Nombre completo: " + detalles.get("nombre_completo"));
-                System.out.println("Email: " + detalles.get("email"));
+                System.out.println("Email: " + detalles.get("correo"));
                 System.out.println("Teléfono: " + detalles.get("telefono"));
                 System.out.println("");
                 System.out.println("Sucursal: " + detalles.get("sucursal"));
                 System.out.println("Departamento: " + detalles.get("departamento"));
                 System.out.println("Puesto: " + detalles.get("puesto"));
-                System.out.println("Salario: $" + String.format("%.2f", detalles.get("salario")));
+                System.out.println("Salario: $" + detalles.get("salario"));
                 
             } else {
                 System.out.println("No se pudo obtener la información. Intente nuevamente más tarde.");

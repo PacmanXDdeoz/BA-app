@@ -31,20 +31,21 @@ public class MenuLogin {
                     System.out.println("¿Ya tienes una cuenta con nosotros?");
                     System.out.println("1. Si ░░░░░░░░ 2. No");
                     int op = sc.nextInt();
+                    do {
                     if (op == 1) {
                         GeneralService.cleanScreen();
                         GeneralService.showLoading();
                         iniciarSesion();
-                        MenuEmpleado.menuEmpleado();
-                    } else {
+                    } if (op == 2) {
                         GeneralService.cleanScreen();
                         GeneralService.showLoading();
                         GeneralService.cleanScreen();
                         RegistroEmpleado.rEmpleado();
-                        MenuEmpleado.menuEmpleado();
-                    }
-                    
-                    break;
+                        iniciarSesion();
+                    } else {
+                        System.out.println("Selecciona una opcion valida");
+                    }} while (op > 2);
+
                     case 2:
                         System.out.println("¿Tienes ya una cuenta con nosotros?");
                         System.out.println("1. Si ░░░░░░░░ 2. No");
@@ -61,7 +62,7 @@ public class MenuLogin {
     public static Empleados iniciarSesion(){
         GeneralService.cleanScreen();
         Scanner sc = new Scanner(System.in);
-        System.out.println("▶INICIAR SESION◀");
+        System.out.println("▶ INICIAR SESION ◀");
         System.out.print("Ingresa tu correo: ");
         String email = sc.nextLine();
         System.out.print("Ingresa tu contraseña: ");
@@ -76,6 +77,8 @@ public class MenuLogin {
             empleadoActual = LoginEmpleado.login(connection, email, pass);
 
             if (empleadoActual != null) {
+                MenuEmpleado.menuEmpleado(empleadoActual);
+            } else {
                 System.out.println("Email o contraseña invalida");
             }
         } catch (Exception e) {

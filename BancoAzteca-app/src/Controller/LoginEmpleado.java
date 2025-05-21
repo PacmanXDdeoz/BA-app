@@ -26,7 +26,7 @@ public class LoginEmpleado {
 
             if (resultSet.next()) {                
                 empleado = new Empleados();
-                empleado.setEmpleados_id(resultSet.getInt("empleados_id"));
+                empleado.setEmpleado_id(resultSet.getInt("empleado_id"));
                 empleado.setSucursal_id(resultSet.getInt("sucursal_id"));
                 empleado.setDepartamento_id(resultSet.getInt("departamento_id"));
                 empleado.setNombre_empleado(resultSet.getString("nombre_empleado"));                    empleado.setApellido_paterno(resultSet.getString("apellido_paterno"));
@@ -36,7 +36,7 @@ public class LoginEmpleado {
                 empleado.setTelefono_empleado(resultSet.getString("telefono_empleado"));
                 empleado.setEmail_empleado(resultSet.getString("email_empleado"));                    
 
-                System.out.println("Login exitoso!" + empleado.getNombre_empleado());
+                System.out.println("Login exitoso!" + " " + empleado.getNombre_empleado());
             } else {
                 System.out.println("Credenciales incorrectas");
             }

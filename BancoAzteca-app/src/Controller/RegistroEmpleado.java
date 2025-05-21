@@ -22,7 +22,7 @@ public class RegistroEmpleado {
             Empleados empleados = new Empleados();
             registroEmpleados.add(empleados);
             int id = registroEmpleados.size() + 1;
-            ((Empleados)registroEmpleados.get(registroEmpleados.size() - 1)).setEmpleados_id(id);
+            ((Empleados)registroEmpleados.get(registroEmpleados.size() - 1)).setEmpleado_id(id);
 
             int sucursal = 0;
             do {
