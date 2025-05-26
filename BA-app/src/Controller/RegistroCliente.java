@@ -14,8 +14,7 @@ public class RegistroCliente {
     public RegistroCliente() {
     }
 
-    public static ArrayList<Cliente> rClientes() {
-        Scanner sc = new Scanner(System.in);
+    public static ArrayList<Cliente> rClientes(Scanner sc) {
         ArrayList<Cliente> registroClientes = new ArrayList<>();
         Connection connection = null;
 
@@ -94,8 +93,6 @@ public class RegistroCliente {
 
             InsertCliente.iCliente(connection, cliente);
             System.out.println("Cliente registrado");
-            System.out.println("Dale enter para iniciar sesion");
-            sc.nextLine();
         } catch (SQLException e) {
         System.out.println("Error al insertar en la base de datos: " + e.getMessage());
         e.printStackTrace();

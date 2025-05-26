@@ -15,79 +15,92 @@ import Config.Con;
 
 public class MenuLogin {
 
+    private static final Scanner sc = new Scanner(System.in);
+
     public static void menuBienvenida(){
-        Scanner sc = new Scanner(System.in);
-        
 
         while (true) {
             try {
+                GeneralService.cleanScreen();
                 System.out.println("█████████████████████████████████████");
                 System.out.println("");
                 System.out.println("** 🏦 Bienvenido a Banco azteca 🏦 **");
-                System.out.println("-- 1. Empleado ░░░░░░░░ 2. Cliente --");
+                System.out.println("-- 𝟭. Empleado ░░░░░░░░ 𝟮. Cliente --");
                 System.out.println("");
                 System.out.println("█████████████████████████████████████");
-                System.out.println("--------0. Cerrar aplicacion---------");
+                System.out.println("--------𝟬. Cerrar aplicacion---------");
                 int opt = sc.nextInt();
-
                 switch (opt) {
                     case 0:
-                    GeneralService.cleanScreen();
-                    System.out.println("Esperemos verte pronto de nuevo! :D");
-                    break;
+                        GeneralService.cleanScreen();
+                        System.out.println("Esperemos verte pronto de nuevo! :D");
+                        System.exit(0);                        
+                        break;
                     case 1:
-                    GeneralService.cleanScreen();
-                    System.out.println("¿Ya tienes una cuenta con nosotros?");
-                    System.out.println("------ 1. Si ░░░░░░░░ 2. No -------");
-                    int op = sc.nextInt();
-                    do {
-                    if (op == 1) {
                         GeneralService.cleanScreen();
-                        GeneralService.showLoading();
-                        iniciarSesion();
-                    } if (op == 2) {
-                        GeneralService.cleanScreen();
-                        GeneralService.showLoading();
-                        GeneralService.cleanScreen();
-                        RegistroEmpleado.rEmpleado();
-                        iniciarSesion();
-                    } else {
-                        System.out.println("Selecciona una opcion valida");
-                    }} while (op > 2);
-                    break;
-                    case 2:
-                    GeneralService.cleanScreen();
-                    System.out.println("¿Tienes ya una cuenta con nosotros?");
-                    System.out.println("------ 1. Si ░░░░░░░░ 2. No -------");
-                    op = sc.nextInt();
-                    do {
-                    if (op == 1) {
-                        GeneralService.cleanScreen();
-                        GeneralService.showLoading();
-                        iniciarSesionCliente();
-                    } if (op == 2) {
-                        GeneralService.cleanScreen();
-                        GeneralService.showLoading();
-                        GeneralService.showLoading();
-                        System.out.println("Por favor acuda a una sucursal para aperturar una cuenta ");
+                        System.out.println("≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡");
+                        System.out.println("¿Ya tienes una cuenta con nosotros?");
+                        System.out.println("------ 𝟭. Si ░░░░░░░░ 𝟮. No -------");
+                        System.out.println("≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡");
+                        System.out.print("Selecciona una opcion: ");
+                        int op = sc.nextInt();
                         sc.nextLine();
-                        MenuLogin.menuBienvenida();
-                    } else {
-                        System.out.println("Selecciona una opcion valida");
-                    }} while (op > 2);
-
+                        switch (op) {
+                            case 1:
+                                GeneralService.cleanScreen();
+                                GeneralService.showLoading();
+                                iniciarSesion();
+                                break;
+                            case 2:
+                                GeneralService.cleanScreen();
+                                GeneralService.showLoading();
+                                GeneralService.cleanScreen();
+                                RegistroEmpleado.rEmpleado(sc);
+                                iniciarSesion();
+                                break;
+                            default:
+                                System.out.println("Selecciona una opcion valida");
+                                break;
+                        } break;
+                    case 2:
+                        GeneralService.cleanScreen();
+                        System.out.println("≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡");
+                        System.out.println("¿Tienes ya una cuenta con nosotros?");
+                        System.out.println("------ 𝟭. Si ░░░░░░░░ 𝟮. No -------");
+                        System.out.println("≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡");
+                        System.out.print("Selecciona una opcion: ");
+                        op = sc.nextInt();
+                        sc.nextLine();
+                        switch (op) {
+                            case 1:
+                                GeneralService.cleanScreen();
+                                GeneralService.showLoading();
+                                iniciarSesionCliente();
+                                break;
+                            case 2:
+                                GeneralService.cleanScreen();
+                                GeneralService.showLoading();
+                                GeneralService.cleanScreen();
+                                System.out.println("🤑 Por favor acuda a una sucursal para aperturar una cuenta 😃");
+                                sc.nextLine();
+                                break;
+                            default:
+                                System.out.println("Selecciona una opcion valida");
+                                break;
+                        } break;
                     default:
+                        System.out.println("Selecciona una opcion valida");
                         break;
                 }
             } catch (Exception e) {
+                System.err.println("Error en el menu: " + e.getMessage());
             }
         }
     }
 
     public static Empleados iniciarSesion(){
         GeneralService.cleanScreen();
-        Scanner sc = new Scanner(System.in);
-        System.out.println("▶ INICIAR SESION ◀");
+        System.out.println("💲 ▶ INICIAR SESION EMPLEADOS ◀ 💲");
         System.out.print("Ingresa tu correo: ");
         String email = sc.nextLine();
         System.out.print("Ingresa tu contraseña: ");
@@ -115,8 +128,7 @@ public class MenuLogin {
 
     public static Cliente iniciarSesionCliente(){
         GeneralService.cleanScreen();
-        Scanner sc = new Scanner(System.in);
-        System.out.println("▶ INICIAR SESION ◀");
+        System.out.println("💲 ▶ INICIAR SESION CLIENTE ◀ 💲");
         System.out.print("Ingresa tu correo: ");
         String email = sc.nextLine();
         System.out.print("Ingresa tu contraseña: ");

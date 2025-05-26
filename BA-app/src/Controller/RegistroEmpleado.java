@@ -13,8 +13,7 @@ public class RegistroEmpleado {
     public RegistroEmpleado() {
     }
 
-    public static ArrayList<Empleados> rEmpleado() {
-        Scanner sc = new Scanner(System.in);
+    public static ArrayList<Empleados> rEmpleado(Scanner sc) {
         ArrayList<Empleados> registroEmpleados = new ArrayList<>();
         Connection connection = null;
 
@@ -132,9 +131,6 @@ public class RegistroEmpleado {
 
         InsertEmpleados.iEmpleados(connection, empleados);
         System.out.println("Empleado registrado");
-        System.out.println("Dale enter para iniciar sesion");
-        sc.nextLine();
-        
         } catch (SQLException e) {
         System.out.println("Error al insertar en la base de datos: " + e.getMessage());
         e.printStackTrace();

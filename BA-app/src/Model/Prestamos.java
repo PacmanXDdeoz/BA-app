@@ -1,15 +1,17 @@
 package Model;
 
+import java.time.LocalDate;
+
 public class Prestamos {
     int prestamos_id, cliente_id, producto_id, estado_id, plazo_interes;
     double monto, tasa_interes, pago_mensual;
-    String fecha_inicio, fecha_fin;
+    LocalDate fecha_inicio, fecha_fin;
 
     public Prestamos(){
     }
 
     public Prestamos(int prestamos_id, int cliente_id, int producto_id, int estado_id, int plazo_interes,
-    double monto, double tasa_interes, double pago_mensual, String fecha_fin, String fecha_inicio){
+    double monto, double tasa_interes, double pago_mensual, LocalDate fecha_fin, LocalDate fecha_inicio){
         this.prestamos_id = prestamos_id;
         this.cliente_id = cliente_id;
         this.estado_id = estado_id;
@@ -85,19 +87,19 @@ public class Prestamos {
         this.pago_mensual = pago_mensual;
     }
 
-    public String getFecha_inicio() {
+    public LocalDate getFecha_inicio() {
         return fecha_inicio;
     }
 
-    public void setFecha_inicio(String fecha_inicio) {
+    public void setFecha_inicio(LocalDate fecha_inicio) {
         this.fecha_inicio = fecha_inicio;
     }
 
-    public String getFecha_fin() {
+    public LocalDate getFecha_fin() {
         return fecha_fin;
     }
 
-    public void setFecha_fin(String fecha_fin) {
+    public void setFecha_fin(LocalDate fecha_fin) {
         this.fecha_fin = fecha_fin;
     }
 

@@ -2,13 +2,13 @@ package Model;
 
 public class Beneficiarios {
     int beneficiario_id, cliente_id; 
-    String nombre_beneficiario, apellido_paterno, apellido_materno, parentesco, telefono;
+    String nombre_beneficiario, apellido_paterno, apellido_materno, parentesco, telefono, email;
 
     public Beneficiarios(){
     }
 
     public Beneficiarios(int beneficiario_id, int cliente_id, String nombre_beneficiario, String apellido_paterno,
-    String apellido_materno, String parentesco, String telefono){
+    String apellido_materno, String parentesco, String telefono, String email){
         this.beneficiario_id = beneficiario_id;
         this.cliente_id = cliente_id;
         this.nombre_beneficiario = nombre_beneficiario;
@@ -16,6 +16,7 @@ public class Beneficiarios {
         this.apellido_materno = apellido_materno;
         this.parentesco = parentesco;
         this.telefono = telefono;
+        this.email = email;
     }
 
     public int getBeneficiario_id() {
@@ -74,11 +75,19 @@ public class Beneficiarios {
         this.telefono = telefono;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     @Override
     public String toString() {
         return "Beneficiarios [beneficiario_id=" + beneficiario_id + ", cliente_id=" + cliente_id
                 + ", nombre_beneficiario=" + nombre_beneficiario + ", apellido_paterno=" + apellido_paterno
                 + ", apellido_materno=" + apellido_materno + ", parentesco=" + parentesco + ", telefono=" + telefono
-                + "]";
+                + ", email=" + email + "]";
     }
 }
