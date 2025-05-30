@@ -60,8 +60,6 @@ public class RegistroBeneficiario {
 
             InsertBeneficiario.iBeneficiarios(connection, beneficiarios, cliente);
             System.out.println("Beneficiario registrado");
-            System.out.println("Dale enter para continuar");
-            sc.nextLine();
         } catch (SQLException e) {
             System.out.println("Error al insertar en la base de datos: " + e.getMessage());
             e.printStackTrace();

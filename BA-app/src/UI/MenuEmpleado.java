@@ -120,6 +120,7 @@ public class MenuEmpleado {
                                 RegistroCliente.rClientes(sc);
                                 System.out.println("\nCliente registrado exitosamente. Presione Enter para continuar...");
                                 sc.nextLine();
+                                menuEmpleado(empladoActual);
                                 break;
                             case 2:
                                 GeneralService.cleanScreen();

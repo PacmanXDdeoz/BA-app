@@ -3,9 +3,11 @@ package Controller;
 import Config.Con;
 import Model.Tarjetas;
 import Model.Cliente;
+import Model.Empleados;
 import Repository.InsertTarjetas;
 import Service.GeneradorRandom;
 import Service.HoraActualService;
+import UI.MenuEmpleado;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -196,6 +198,9 @@ public class RegistroTarjetas {
 
             InsertTarjetas.iTarjeta(connection, tarjeta, cliente);
             System.out.println("Tarjeta registrada");
+            System.out.println("Oprime Enter para continuar: ");
+            sc.nextLine();
+            MenuEmpleado.menuEmpleado(null);
         } catch (SQLException e) {
             System.out.println("Error al insertar en la base de datos: " + e.getMessage());
             e.printStackTrace();
